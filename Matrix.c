@@ -1,7 +1,15 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "utilities.h"
 #include "Matrix.h"
+
 #define DEBUG 2
 #define SEP_LINE "------------\n"
+
+#define EXPAND_READ_FUNC(t) read_##t
+#define READ_FUNC(t) EXPAND_READ_FUNC(t)
+#define ENTRY_WIDTH 5
+#define ENTRY_PRECISION 2
 #define TILE_SIZE 8
 
 static void _mul_mat_op(struct Matrix *res_mat, const struct Matrix *mat_l, const struct Matrix *mat_r);
@@ -11,9 +19,9 @@ struct Matrix *init_mat(const int rows, const int cols)
     struct Matrix *mat = (struct Matrix*)malloc(sizeof(struct Matrix));
     mat->rows = rows;
     mat->cols = cols;
-    mat->entries = (float**)malloc(rows * sizeof(float*));
+    mat->entries = (TYPE**)malloc(rows * sizeof(TYPE*));
     for (int i = 0; i < rows; i++)
-        mat->entries[i] = (float*)malloc(cols * sizeof(float));
+        mat->entries[i] = (TYPE*)malloc(cols * sizeof(TYPE));
     return mat;
 }
 
@@ -41,12 +49,12 @@ struct Matrix *typing_create_matrix()
 
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
-            float entry;
+            TYPE entry;
             do {
                 #if DEBUG
                 printf("entry_%d%d: ", i, j);
                 #endif
-            } while (!read_float(&entry));
+            } while (!READ_FUNC(TYPE)(&entry));
             mat->entries[i][j] = entry;
         }
     }

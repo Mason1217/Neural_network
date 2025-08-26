@@ -1,17 +1,12 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "utilities.h"
-
-#define ENTRY_WIDTH 5
-#define ENTRY_PRECISION 2
+#include "definitions.h"
 
 struct Matrix {
     int rows;
     int cols;
-    float **entries;
+    TYPE **entries;
 };
 
 /**

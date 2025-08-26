@@ -13,4 +13,6 @@ int read_int(int *number);
  */
 int read_float(float *number);
 
+int read_double(double *number);
+
 #endif

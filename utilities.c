@@ -19,3 +19,13 @@ int read_float(float *number)
     }
     return 1;
 }
+
+int read_double(double *number)
+{
+    if (!scanf("%lf", number)) {
+        int c;
+        while((c = getchar()) != '\n' && c != EOF);
+        return 0;
+    }
+    return 1;
+}

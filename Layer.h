@@ -4,7 +4,7 @@
 #include "Matrix.h"
 #include "definitions.h"
 
-#define LAYER_TYPE {LINEAR, RELU, SOFTMAX}
+enum LAYER_TYPE {LINEAR, RELU, SOFTMAX};
 
 struct Layer {
     enum LAYER_TYPE type;

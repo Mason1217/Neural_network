@@ -14,6 +14,7 @@ struct Layer *init_layer(const int input_dim, const int output_dim,
     layer->Bias = random_create_matrix(1, output_dim);
     layer->Weight = random_create_matrix(input_dim, output_dim);
     layer->activation_func = activation_func;
+    return layer;
 }
 
 struct Matrix *forward_layer(const struct Layer *layer, const struct Matrix *X)

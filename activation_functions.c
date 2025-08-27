@@ -2,12 +2,12 @@
 #include <math.h>
 #include "activation_functions.h"
 
-TYPE ReLU(TYPE x)
+TYPE ReLU(const TYPE x)
 {
     return (x <= 0) ? 0 : x;
 }
 
-TYPE *softmax(TYPE *nums, int len)
+TYPE *softmax(const TYPE *nums, const int len)
 {
     TYPE sum = 0;
     for (int i = 0; i < len; i++)

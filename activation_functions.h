@@ -3,8 +3,8 @@
 
 #include "definitions.h"
 
-TYPE ReLU(TYPE x);
+TYPE ReLU(const TYPE x);
 
-TYPE *softmax(TYPE *nums, int len);
+TYPE *softmax(const TYPE *nums, const int len);
 
 #endif

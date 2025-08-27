@@ -3,7 +3,7 @@
 #include "utilities.h"
 #include "Matrix.h"
 
-#define DEBUG 2
+#define DEBUG 1
 #define SEP_LINE "------------\n"
 
 #define EXPAND_READ_FUNC(t) read_##t
@@ -66,6 +66,15 @@ struct Matrix *typing_create_matrix()
         printf("\n");
     }
     #endif
+    return mat;
+}
+
+struct Matrix *random_create_matrix(const int rows, const int cols)
+{
+    struct Matrix *mat = init_mat(rows, cols);
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            mat->entries[i][j] = gen_random();
     return mat;
 }
 

@@ -19,6 +19,8 @@ struct Matrix *init_mat(const int rows, const int cols);
  */
 struct Matrix *typing_create_matrix();
 
+struct Matrix *random_create_matrix(const int rows, const int cols);
+
 void print_matrix(const struct Matrix *mat);
 
 /**

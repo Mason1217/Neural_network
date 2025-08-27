@@ -4,21 +4,33 @@
 #include "Matrix.h"
 #include "definitions.h"
 
+#define LAYER_TYPE {LINEAR, RELU, SOFTMAX}
+
 struct Layer {
+    enum LAYER_TYPE type;
     int input_dim;
     int output_dim;
-    struct Matrix *Bias;
-    struct Matrix *Weight;
-    TYPE (*activation_func)(const TYPE);
+    void *params;
+    struct Matrix *(*forward)(const struct Matrix*, const void*);
 };
 
-struct Layer *init_layer(const int input_dim, const int output_dim,
-                         TYPE (*activation_func)(const TYPE));
+struct Layer *init_linear_layer(const int input_dim, const int output_dim);
+struct Layer *init_relu_layer(const int input_dim, const int output_dim);
+struct Layer *init_softmax_layer(const int input_dim, const int output_dim);
+
+struct LinearParams {
+    struct Matrix *Weight;
+    struct Matrix *Bias;
+};
+
+struct LinearParams *init_linear_params(const int input_dim, const int output_dim);
+
+struct Matrix *linear_forward(const struct Matrix *X, const void *params);
+struct Matrix *relu_forward(const struct Matrix *X, const void *params);
 
 /**
-* Forward input matrix(X)(1, input dim) through given layer.
-* @return Output matrix(Y)(1, output dim)
-*/
-struct Matrix *forward_layer(const struct Layer *layer, const struct Matrix *X);
+ * Expected X's shape to be (1, C).
+ */
+struct Matrix *softmax_forward(const struct Matrix *X, const void *params);
 
 #endif

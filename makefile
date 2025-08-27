@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -O2 -MMD -MP
-OBJS = matrix_test.o Matrix.o utilities.o Layer.o
+OBJS = matrix_test.o Matrix.o utilities.o Layer.o Block.o
 DEPS = $(OBJS:.o=.d)
 TARGET = matrix_test
 
